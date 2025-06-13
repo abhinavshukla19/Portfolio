@@ -10,11 +10,10 @@ export let Herosection = ({color, textcolor}) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const [text] = useTypewriter({
-        words: ['Abhinav Shukla', "Sia Aggarwal"],
+        words: ['Abhinav Shukla'],
         typeSpeed: 150,
         deleteSpeed: 100,
-        delaySpeed: 2000,
-        loop: 2,
+        delaySpeed: 1000,
         cursorStyle: ':'
     });
 
