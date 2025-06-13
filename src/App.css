@@ -1,7 +1,186 @@
-html{
-    scroll-behavior: smooth;
+/* Base styles and CSS variables */
+:root {
+  /* Light theme colors */
+  --primary-light: #2563eb;
+  --secondary-light: #3b82f6;
+  --accent-light: #60a5fa;
+  --text-primary-light: #1f2937;
+  --text-secondary-light: #4b5563;
+  --background-light: #ffffff;
+  --background-alt-light: #f3f4f6;
+  --border-light: #e5e7eb;
+
+  /* Dark theme colors */
+  --primary-dark: #60a5fa;
+  --secondary-dark: #3b82f6;
+  --accent-dark: #2563eb;
+  --text-primary-dark: #f9fafb;
+  --text-secondary-dark: #e5e7eb;
+  --background-dark: #111827;
+  --background-alt-dark: #1f2937;
+  --border-dark: #374151;
+
+  /* Common variables */
+  --max-width: 1200px;
+  --header-height: 70px;
+  --footer-height: 60px;
+  --section-spacing: 6rem;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-light), var(--accent-light));
 }
 
-a{
-    text-decoration: none;
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* App container */
+.app {
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme styles */
+.app.dark {
+  background-color: var(--background-dark);
+  color: var(--text-primary-dark);
+
+  --primary: var(--primary-dark);
+  --secondary: var(--secondary-dark);
+  --accent: var(--accent-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --background: var(--background-dark);
+  --background-alt: var(--background-alt-dark);
+  --border: var(--border-dark);
+  --gradient-primary: linear-gradient(135deg, var(--primary-dark), var(--accent-dark));
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-dark), var(--accent-dark));
+}
+
+/* Main content */
+.main-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+/* Section styles */
+section {
+  padding: var(--section-spacing) 0;
+  position: relative;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  :root {
+    --section-spacing: 4rem;
+  }
+
+  .main-content {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-spacing: 3rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Container utility */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }

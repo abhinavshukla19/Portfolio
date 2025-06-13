@@ -1,114 +1,208 @@
-.card{
-    border: 2px solid #5b9bd5;
-    background: linear-gradient(to right, #fdfbfb, #ebedee);
-    border-radius: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px #0000001a;
-    padding: 20px;
-    width: auto;
-    height: 480px;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    max-width: 380px;
-    margin: auto;
-}
-
-
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px yellow;
-} 
-
-
-
-.projectphoto{
-    height: 270px;
-    width: 380px;
-    display: flex;
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center;
+.projectcard {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
     overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    backdrop-filter: blur(8px);
 }
 
-.project-photo img {
-  width: 100%;
-  border-radius: 10px;
- 
+/* Light mode styles */
+:root[data-theme="light"] .projectcard {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.cardimage{
-    height: 250px;
-    width: 350px;
-    border-radius: 30px;
-    filter: drop-shadow(6px 1px 2px #353571);
-   
+:root[data-theme="light"] .projectdescription {
+    color: rgba(0, 0, 0, 0.75);
 }
 
-.cardimage:hover{
-  transform: scale(1.05);
-  transition: transform 0.9s ease;
-  border-radius: 5px;
-  box-shadow: 0px 8px 20px rgba(247, 19, 19, 0.2);
+/* Dark mode styles */
+:root[data-theme="dark"] .projectcard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.carddetails{
-    margin-top: 10px;
-    width: 380px;
-    height: 228px;
+:root[data-theme="dark"] .projectdescription {
+    color: rgba(255, 255, 255, 0.85);
 }
 
-.projectname{
-    display: flex;
-    justify-content: center;
-    margin: 7px;
-    font-weight: bold;
+.projectcard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
-
-.projectbio{
-    font-size: 1rem;
-    text-align: center;
-    font-family: cursive;
-    color: #555;
-    margin: 10px 0;
+.projectimage {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
 }
 
-.codebutton{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    gap: 10px;
-
+.projectimage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.gitbutton{
-    height: 22px;
-    margin-right: 10px;
-    background-color: red;
-    filter: drop-shadow(6px 1px 2px #353571);
-} 
-
-
-  button {
-    background: #222; 
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    filter: drop-shadow(6px 1px 2px #353571);
-}
-
-.button:hover {
-    background: #444;
+.projectcard:hover .projectimage img {
     transform: scale(1.05);
-  }
+}
+
+.projectcontent {
+    padding: 1.5rem;
+}
+
+.projecttitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.projectdescription {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.75);
+    margin-bottom: 2rem;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.skill-tag {
+    padding: 0.35rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: rgba(99, 102, 241, 0.1);
+    color: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+:root[data-theme="dark"] .skill-tag {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.projectlinks {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 24px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.project-link.live {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: white;
+    box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+}
+
+.project-link.github {
+    background: rgba(99, 102, 241, 0.1);
+    color: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+:root[data-theme="dark"] .project-link.github {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.project-link:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    .projectcard {
+        max-width: 100%;
+    }
+
+    .projectimage {
+        height: 180px;
+    }
+
+    .projectcontent {
+        padding: 1.25rem;
+    }
+
+    .projecttitle {
+        font-size: 1.125rem;
+    }
+
+    .projectdescription {
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .skills-container {
+        margin-bottom: 1.5rem;
+    }
+
+    .skill-tag {
+        padding: 0.3rem 0.625rem;
+        font-size: 0.8125rem;
+    }
+
+    .project-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .projectimage {
+        height: 160px;
+    }
+
+    .projectcontent {
+        padding: 1rem;
+    }
+
+    .projecttitle {
+        font-size: 1rem;
+    }
+
+    .projectdescription {
+        font-size: 0.8125rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .skills-container {
+        gap: 0.4rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .skill-tag {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .project-link {
+        padding: 0.4rem 0.875rem;
+        font-size: 0.8125rem;
+    }
+}
   

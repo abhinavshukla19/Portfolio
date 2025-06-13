@@ -1,14 +1,17 @@
 import "./skillballon.css"
 
-export let Skillballoon=(props)=>{
-    return(
-            <div style={{backgroundColor:props.skilcolor}} className="skillcircle">
-                <div className="emoji">
-                    {props.skillemoji}
-                </div>
-                <div className="emojiname">
-                    {props.skillname}
-                </div>
+export let Skillballoon = ({ skillname, skillemoji, skilcolor }) => {
+    return (
+        <div
+            className="skillballonbox"
+            style={{ background: skilcolor }}
+        >
+            <div className="skillballontext">
+                {skillname}
             </div>
+            <div className="skillballonemoji">
+                {skillemoji}
+            </div>
+        </div>
     )
 }

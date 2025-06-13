@@ -1,49 +1,77 @@
-import { Skillballoon } from "../../components/skillballon/skillballon"
-import "./skills.css"
+import { Skillballoon } from "../../components/skillballon/skillballon";
+import { motion } from "framer-motion";
+import "./skills.css";
 
-export let Skills=({color,textcolor})=>{
+export let Skills = () => {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
 
-    const skillname=["HTML","CSS","JavaScript","React","Tailwind","Python","Node js","Python","GitHub","Figma"]
-    const skillcolor=["#FFE6DD"," #E6EEFF","#FFF8E1","#E6F7FF","#E6FFF4","#F0F4F8", "#F8F9F0" ,"#F0F4F8","#F8F7J9","#F2E6FF" ]
-    const skillemoji=["🌐","🎨","📜","⚛️","🌊","🐍","🟢","🖌️","🐙"]
-    
-    return(
-        <section style={{background:color}} id="skills" className="skillsection">
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
+  };
 
-            <div className="skillheadingbox">
-                <p style={{color:textcolor}} className="skillheadingtext">My Skills</p>
+  const skillGroups = {
+    "Frontend Development": ["HTML", "CSS", "JavaScript", "React"],
+    "Backend Development": ["Python", "Node js"],
+    "Tools & Technologies": ["GitHub", "Figma"]
+  };
+
+  const skillEmojis = {
+    HTML: "🌐",
+    CSS: "🎨",
+    JavaScript: "⚡",
+    React: "⚛️",
+    Python: "🐍",
+    "Node js": "🟢",
+    GitHub: "🐙",
+    Figma: "🎯"
+  };
+
+  return (
+    <section id="skills" className="skill-section">
+      <div className="skill-headingbox">
+        <h2 className="skill-headingtext">My Skills</h2>
+      </div>
+      <div className="glass-card">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          {Object.entries(skillGroups).map(([category, skills]) => (
+            <div key={category} className="skill-group-card">
+              <h3 className="skill-category">{category}</h3>
+              <div className="skill-balloons">
+                {skills.map((skill) => (
+                  <motion.div key={skill} variants={item} className="skill-pill-anim">
+                    <Skillballoon
+                      skillname={skill}
+                      skillemoji={skillEmojis[skill]}
+                    />
+                  </motion.div>
+                ))}
+              </div>
             </div>
-
-            <div style={{color:textcolor}} className="skillheadname">
-                Frontend
-            </div>
-
-            <div className="skillgrid">
-                <Skillballoon skillname={skillname[0]} skillemoji={skillemoji[0]} skilcolor={skillcolor[0]}></Skillballoon>
-                <Skillballoon skillname={skillname[1]} skillemoji={skillemoji[1]} skilcolor={skillcolor[1]}></Skillballoon>
-                <Skillballoon skillname={skillname[2]} skillemoji={skillemoji[2]} skilcolor={skillcolor[2]}></Skillballoon>
-                <Skillballoon skillname={skillname[3]} skillemoji={skillemoji[3]} skilcolor={skillcolor[3]}></Skillballoon>
-                <Skillballoon skillname={skillname[4]} skillemoji={skillemoji[4]} skilcolor={skillcolor[4]}></Skillballoon>
-            </div>
-
-            <div style={{color:textcolor}} className="skillheadname">
-                Backend
-            </div>
-
-            <div className="skillgrid">
-                <Skillballoon skillname={skillname[7]} skillemoji={skillemoji[5]} skilcolor={skillcolor[5]}></Skillballoon>
-                <Skillballoon skillname={skillname[6]} skillemoji={skillemoji[6]} skilcolor={skillcolor[6]}></Skillballoon>
-            </div>
-
-            <div style={{color:textcolor}} className="skillheadname">
-                Familiar Tools
-            </div>
-
-            <div className="skillgrid">
-                <Skillballoon skillname={skillname[8]} skillemoji={skillemoji[8]} skilcolor={skillcolor[7]}></Skillballoon>
-                <Skillballoon skillname={skillname[9]} skillemoji={skillemoji[7]} skilcolor={skillcolor[8]}></Skillballoon>
-            </div>
-            
-        </section>
-    )
-}
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
