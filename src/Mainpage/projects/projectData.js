@@ -5,7 +5,7 @@ export const projectData = [
         title: "Netflix Clone",
         description: "A modern UI clone of Netflix built with React, featuring responsive design and smooth animations. Implements user authentication and dynamic content loading.",
         skills: ["React", "CSS", "HTML"],
-        githubLink: "https://github.com/ayushabhinav19/Netflix-login-clone",
+        githubLink: "https://github.com/abhinavshukla19/Netflix-login-clone",
         liveLink: null,
         featured: true
     },
@@ -15,7 +15,7 @@ export const projectData = [
         title: "SpaceX Explorer",
         description: "An interactive SpaceX data explorer built with React and SpaceX API. Features real-time data updates, launch schedules, and detailed mission information.",
         skills: ["React", "API", "CSS"],
-        githubLink: null,
+        githubLink: "https://github.com/abhinavshukla19/Spacex",
         liveLink: "https://spacex.fourrnexus.com/",
         featured: true
     },
