@@ -18,7 +18,7 @@ export let Herosection = ({color, textcolor}) => {
     });
 
     const [role] = useTypewriter({
-        words: ['Frontend Developer', 'React Developer', 'UI/UX Developer', 'Web Developer'],
+        words: ['Full stack Developer', 'React Developer', 'Web Developer'],
         typeSpeed: 100,
         deleteSpeed: 80,
         delaySpeed: 2000,
