@@ -28,8 +28,8 @@ export let Skills = () => {
 
   const skillGroups = {
     "Frontend Development": ["HTML", "CSS", "JavaScript", "React"],
-    "Backend Development": ["Python", "Node js"],
-    "Tools & Technologies": ["GitHub", "Figma"]
+    "Backend Development": ["Python", "Node js" , "Express js"],
+    "Deployment & Hosting": ["GitHub", "Supabase" , "Render"]
   };
 
   const skillEmojis = {
@@ -37,10 +37,12 @@ export let Skills = () => {
     CSS: "🎨",
     JavaScript: "⚡",
     React: "⚛️",
+    Supabase:"⚡",
+    "Express js":"⚙️",
     Python: "🐍",
     "Node js": "🟢",
     GitHub: "🐙",
-    Figma: "🎯"
+    Render:"☁️"
   };
 
   return (
