@@ -15,25 +15,30 @@ export function About() {
           {/* Portrait — desaturated so it sits in the palette rather than
               fighting it, with an offset accent block behind for depth. */}
           <Reveal>
-            <figure className="relative mx-auto w-full max-w-xs md:mx-0 md:max-w-none">
-              <div
-                aria-hidden
-                className="absolute inset-0 translate-x-3 translate-y-3 rounded-sm"
-                style={{ backgroundColor: 'var(--color-accent)' }}
-              />
-              <div
-                className="relative overflow-hidden rounded-sm"
-                style={{ border: '1px solid var(--rule)' }}
-              >
-                <ProjectImage
-                  base="/images/portrait"
-                  alt="Abhinav Shukla"
-                  sizes="(max-width: 768px) 320px, 420px"
-                  className="block w-full grayscale contrast-[1.08]"
+            <figure className="mx-auto w-full max-w-xs md:mx-0 md:max-w-none">
+              {/* The accent block is scoped to this wrapper, not the whole
+                  figure — inset-0 on the figure put it behind the caption too,
+                  leaving faint text on a vermilion field. */}
+              <div className="relative">
+                <div
+                  aria-hidden
+                  className="absolute inset-0 translate-x-3 translate-y-3 rounded-sm"
+                  style={{ backgroundColor: 'var(--color-accent)' }}
                 />
+                <div
+                  className="relative overflow-hidden rounded-sm"
+                  style={{ border: '1px solid var(--rule)' }}
+                >
+                  <ProjectImage
+                    base="/images/portrait"
+                    alt="Abhinav Shukla"
+                    sizes="(max-width: 768px) 320px, 420px"
+                    className="block w-full grayscale contrast-[1.08]"
+                  />
+                </div>
               </div>
               <figcaption
-                className="relative mt-5 flex justify-between font-mono text-[10px] tracking-[0.18em] uppercase"
+                className="mt-8 flex justify-between font-mono text-[10px] tracking-[0.18em] uppercase"
                 style={{ color: 'var(--fg-faint)' }}
               >
                 <span>{site.name}</span>
