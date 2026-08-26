@@ -51,11 +51,18 @@ No copy is hardcoded in components.
 ## Images
 
 Raw screenshots live in `assets/raw/`, outside `public/`, so Vite never ships
-them. `npm run images` re-encodes them to AVIF + WebP + JPEG at 640px and
-1280px in `public/images/`, and `ProjectImage` picks the best format per
-browser. The current set went from 4159 KB to 146 KB.
+them. `npm run images` re-encodes each to AVIF + WebP + JPEG at up to 640px
+and 1280px in `public/images/`, and writes `src/data/images.ts` with the real
+output dimensions and the widths that exist. `ProjectImage` reads that
+manifest so every `<img>` declares its own size — screenshots here range from
+1.60 to 2.21 in aspect, so a hardcoded box would crop most of them. The
+current set goes from 2420 KB to 121 KB.
 
-Commit `public/images/` — CI runs `npm run build`, not `npm run images`.
+Add a file to `assets/raw/`, run `npm run images`, then point a project's
+`image` field at `/images/<slug>`.
+
+Commit `public/images/` and `src/data/images.ts` — CI runs `npm run build`,
+not `npm run images`.
 
 ## Brand assets
 

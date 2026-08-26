@@ -130,6 +130,7 @@ function ProjectRow({ project, position, open, onToggle }: ProjectRowProps) {
                   <ProjectImage
                     base={project.image}
                     alt={project.imageAlt}
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="block h-auto w-full"
                   />
                 ) : (

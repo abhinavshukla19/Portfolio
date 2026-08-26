@@ -3,6 +3,7 @@ import { skillGroups } from '@/data/skills'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { SplitText } from '@/components/ui/SplitText'
 import { Reveal } from '@/components/ui/Reveal'
+import { ProjectImage } from '@/components/ui/ProjectImage'
 
 export function About() {
   return (
@@ -10,8 +11,39 @@ export function About() {
       <div className="mx-auto max-w-[1400px]">
         <SectionHeading index="03" label="About" title="Who is doing the typing." />
 
-        <div className="grid gap-14 md:grid-cols-[1.15fr_1fr] md:gap-20">
-          <div>
+        <div className="grid gap-12 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.45fr)] md:gap-20">
+          {/* Portrait — desaturated so it sits in the palette rather than
+              fighting it, with an offset accent block behind for depth. */}
+          <Reveal>
+            <figure className="relative mx-auto w-full max-w-xs md:mx-0 md:max-w-none">
+              <div
+                aria-hidden
+                className="absolute inset-0 translate-x-3 translate-y-3 rounded-sm"
+                style={{ backgroundColor: 'var(--color-accent)' }}
+              />
+              <div
+                className="relative overflow-hidden rounded-sm"
+                style={{ border: '1px solid var(--rule)' }}
+              >
+                <ProjectImage
+                  base="/images/portrait"
+                  alt="Abhinav Shukla"
+                  sizes="(max-width: 768px) 320px, 420px"
+                  className="block w-full grayscale contrast-[1.08]"
+                />
+              </div>
+              <figcaption
+                className="relative mt-5 flex justify-between font-mono text-[10px] tracking-[0.18em] uppercase"
+                style={{ color: 'var(--fg-faint)' }}
+              >
+                <span>{site.name}</span>
+                <span>{site.location}</span>
+              </figcaption>
+            </figure>
+          </Reveal>
+
+          {/* Bio */}
+          <div className="md:pt-1">
             <SplitText
               as="p"
               text="I like the parts other people skip."
@@ -43,7 +75,10 @@ export function About() {
             </Reveal>
 
             <Reveal delay={0.18}>
-              <dl className="mt-12 grid grid-cols-2 gap-px sm:grid-cols-4" style={{ backgroundColor: 'var(--rule)' }}>
+              <dl
+                className="mt-12 grid grid-cols-2 gap-px sm:grid-cols-4"
+                style={{ backgroundColor: 'var(--rule)' }}
+              >
                 {site.stats.map((stat) => (
                   <div key={stat.label} className="p-4" style={{ backgroundColor: 'var(--bg)' }}>
                     <dt
@@ -63,44 +98,46 @@ export function About() {
               </dl>
             </Reveal>
           </div>
-
-          {/* Skills index */}
-          <Reveal delay={0.12}>
-            <div className="md:pt-3">
-              <p
-                className="mb-6 font-mono text-[10px] tracking-[0.22em] uppercase"
-                style={{ color: 'var(--fg-faint)' }}
-              >
-                Toolkit
-              </p>
-              <dl>
-                {skillGroups.map((group) => (
-                  <div
-                    key={group.id}
-                    className="grid grid-cols-[auto_1fr] gap-x-4 border-t py-5 md:gap-x-6"
-                    style={{ borderColor: 'var(--rule)' }}
-                  >
-                    <dt className="font-mono text-[10px] tracking-widest" style={{ color: 'var(--color-accent)' }}>
-                      {group.index}
-                    </dt>
-                    <div>
-                      <p className="font-mono text-[11px] tracking-[0.18em] uppercase" style={{ color: 'var(--fg-faint)' }}>
-                        {group.label}
-                      </p>
-                      <dd className="mt-2 flex flex-wrap gap-x-3 gap-y-1.5">
-                        {group.items.map((item) => (
-                          <span key={item} className="text-sm md:text-base">
-                            {item}
-                          </span>
-                        ))}
-                      </dd>
-                    </div>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </Reveal>
         </div>
+
+        {/* Toolkit — full width beneath, so the groups get room to breathe */}
+        <Reveal delay={0.1}>
+          <div className="mt-20 md:mt-28">
+            <p
+              className="mb-8 border-t pt-4 font-mono text-[10px] tracking-[0.22em] uppercase"
+              style={{ borderColor: 'var(--rule)', color: 'var(--fg-faint)' }}
+            >
+              Toolkit
+            </p>
+            <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {skillGroups.map((group) => (
+                <div key={group.id} className="min-w-0">
+                  <dt className="flex items-baseline gap-3">
+                    <span
+                      className="font-mono text-[10px] tracking-widest"
+                      style={{ color: 'var(--color-accent)' }}
+                    >
+                      {group.index}
+                    </span>
+                    <span
+                      className="font-mono text-[11px] tracking-[0.18em] uppercase"
+                      style={{ color: 'var(--fg-faint)' }}
+                    >
+                      {group.label}
+                    </span>
+                  </dt>
+                  <dd className="mt-3 space-y-1.5">
+                    {group.items.map((item) => (
+                      <p key={item} className="text-sm md:text-base">
+                        {item}
+                      </p>
+                    ))}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

@@ -5,41 +5,41 @@ type ProjectImageProps = {
   base: string
   alt: string
   className?: string
+  /** Layout width hint for srcset selection. */
+  sizes?: string
 }
 
 /**
- * Serves AVIF, then WebP, then a JPEG fallback, at two widths.
- * Sources and the dimension manifest are produced by
- * scripts/optimize-images.mjs — the real width/height go on the <img> so the
- * browser reserves the right box and the panel does not jump as it loads.
- * Screenshot aspect ratios here run from 1.6 to 2.2, so a hardcoded box
- * would crop most of them.
+ * Serves AVIF, then WebP, then a JPEG fallback.
+ * Sources and the dimension manifest come from scripts/optimize-images.mjs:
+ * the srcset descriptors are the widths that genuinely exist on disk (a
+ * narrow source like the portrait never gets a 1280px variant), and the real
+ * width/height go on the <img> so the browser reserves the right box.
  */
-export function ProjectImage({ base, alt, className }: ProjectImageProps) {
+export function ProjectImage({ base, alt, className, sizes }: ProjectImageProps) {
   const key = base.split('/').pop() ?? ''
-  const size = imageSizes[key]
+  const meta = imageSizes[key]
+  const variants = meta?.variants ?? [1280]
+  const largest = Math.max(...variants)
+
+  const srcSet = (ext: string) =>
+    variants
+      .map((w) => `${base}${w === largest ? '' : `-${w}`}.${ext} ${w}w`)
+      .join(', ')
 
   return (
     // <picture> is inline by default, which leaves a stray baseline gap under
     // the image and lets it size off its intrinsic width.
     <picture className="block">
-      <source
-        type="image/avif"
-        srcSet={`${base}-640.avif 640w, ${base}.avif 1280w`}
-        sizes="(max-width: 768px) 100vw, 50vw"
-      />
-      <source
-        type="image/webp"
-        srcSet={`${base}-640.webp 640w, ${base}.webp 1280w`}
-        sizes="(max-width: 768px) 100vw, 50vw"
-      />
+      <source type="image/avif" srcSet={srcSet('avif')} sizes={sizes} />
+      <source type="image/webp" srcSet={srcSet('webp')} sizes={sizes} />
       <img
         src={`${base}.jpg`}
         alt={alt}
         loading="lazy"
         decoding="async"
-        width={size?.width}
-        height={size?.height}
+        width={meta?.width}
+        height={meta?.height}
         className={className}
       />
     </picture>
