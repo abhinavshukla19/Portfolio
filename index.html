@@ -2,30 +2,98 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Abhinav Shukla — Full-stack developer</title>
+    <meta
+      name="description"
+      content="Abhinav Shukla is a full-stack developer in Pune, India. Four applications shipped solo — a collaborative editor, a streaming site, a storefront and an offline document toolkit."
+    />
+    <link rel="canonical" href="https://abhinavshukla.me/" />
+    <meta name="author" content="Abhinav Shukla" />
+    <meta name="theme-color" content="#0D0D0F" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
-    <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon.svg" />
-    <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#A855F7" />
-    <meta name="description" content="Abhinav Shukla - Web Developer Portfolio | Frontend Developer | React Developer | UI/UX Developer" />
-    <title>Abhinav Shukla | Portfolio</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Abhinav Shukla | Portfolio" />
-    <meta property="og:description" content="Abhinav Shukla - Web Developer Portfolio | Frontend Developer | React Developer | UI/UX Developer" />
-    <meta property="og:image" content="https://yourdomain.com/og-image.png" />
-    <meta property="og:url" content="https://abhinavshukla-portfolio.web.app/" />
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abhinavshukla.me/" />
+    <meta property="og:site_name" content="Abhinav Shukla" />
+    <meta property="og:title" content="Abhinav Shukla — Full-stack developer" />
+    <meta
+      property="og:description"
+      content="Four applications shipped solo — a collaborative editor, a streaming site, a storefront and an offline document toolkit."
+    />
+    <meta property="og:image" content="https://abhinavshukla.me/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Abhinav Shukla — full-stack developer, Pune, India" />
 
-    <!-- Twitter Card Meta Tags -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Abhinav Shukla | Portfolio" />
-    <meta name="twitter:description" content="Abhinav Shukla - Web Developer Portfolio | Frontend Developer | React Developer | UI/UX Developer" />
-    <meta name="twitter:image" content="https://yourdomain.com/og-image.png" />
+    <meta name="twitter:title" content="Abhinav Shukla — Full-stack developer" />
+    <meta
+      name="twitter:description"
+      content="Four applications shipped solo — a collaborative editor, a streaming site, a storefront and an offline document toolkit."
+    />
+    <meta name="twitter:image" content="https://abhinavshukla.me/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Abhinav Shukla",
+        "url": "https://abhinavshukla.me",
+        "email": "contact@abhinavshukla.me",
+        "jobTitle": "Full-stack developer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Pune",
+          "addressRegion": "Maharashtra",
+          "addressCountry": "IN"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "D. Y. Patil International University, Pune"
+        },
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "Node.js",
+          "Socket.IO",
+          "MongoDB",
+          "PostgreSQL",
+          "Cloud computing"
+        ],
+        "sameAs": [
+          "https://github.com/abhinavshukla19",
+          "https://www.linkedin.com/in/abhinavshukla4798"
+        ]
+      }
+    </script>
+
+    <script>
+      // Applied before first paint so the page never flashes the wrong theme.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('as-theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark'
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

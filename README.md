@@ -1,52 +1,75 @@
-# Abhinav Shukla | Portfolio
+# abhinavshukla.me
 
-A modern, responsive developer portfolio built with React. Showcasing projects, skills, and contact information with a beautiful, mobile-friendly design.
+Personal portfolio. React 19 + TypeScript + Vite, Tailwind CSS v4, Motion, Lenis.
+Deployed to Firebase Hosting.
 
----
+## Running it
 
-## 🚀 Features
-- **Hero Section:** Animated intro, personal branding, and call-to-action buttons
-- **Skills Section:** Categorized skills with interactive pills and group cards
-- **Projects Section:** Filterable project gallery with smooth animations
-- **Footer:** Social/contact links, back-to-top button, and a call-to-action
-- **Mobile Responsive:** Hamburger menu, touch-friendly, and fits all screens
-- **Dark/Light Theme:** Toggle for user preference
-- **Smooth Transitions:** For all interactive elements
-
----
-
-## 🛠️ Tech Stack
-- **React 19**
-- **Vite** (for fast development)
-- **CSS Modules** (custom, responsive, and theme-aware)
-- **Framer Motion** (animations)
-- **React Icons** (icons)
-
----
-
-## 📁 Folder Structure
+```bash
+npm install
+npm run dev
 ```
+
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Vite dev server on :5173 |
+| `npm run build` | Typecheck, then build to `dist/` |
+| `npm run preview` | Serve the built output |
+| `npm run lint` | ESLint |
+| `npm run images` | Re-encode `assets/raw/*.png` into `public/images/` |
+
+## Structure
+
+```
+assets/raw/          Source screenshots — NOT shipped. Input to `npm run images`.
+assets/archive/      Screenshots for retired projects.
+public/              Static output: optimised images, résumé, favicon, OG card.
+scripts/             Build-time image + brand-asset generation.
 src/
-  components/        # Reusable UI components
-  Mainpage/          # Main sections (Hero, Skills, Projects, Footer)
-  header/            # Navbar and theme switcher
-  assets/            # (Optional) Images and static files
-  App.jsx, main.jsx  # App entry points
+  data/              All content lives here — projects, timeline, skills, site info.
+  components/
+    layout/          Nav
+    sections/        Hero, Work, Path, About, Contact
+    ui/              Reveal, SplitText, Marquee, MagneticLink, Grain, …
+  hooks/             useTheme, useLenis, useActiveSection
+  styles/            globals.css — design tokens and base layer
 ```
 
----
+## Editing content
 
-## 🙋‍♂️ Author
-**Abhinav Shukla**  
-[LinkedIn](https://www.linkedin.com/in/abhinavshukla4798)  
-[GitHub](https://github.com/ayushabhinav19)
+Everything a visitor reads is in `src/data/`:
 
----
+- `projects.ts` — the work index. Each entry has a `pitch` (card face) and a
+  `hardPart` (the engineering problem). Set `liveUrl` / `repoUrl` to `null` to
+  hide a button.
+- `timeline.ts` — the Path section.
+- `skills.ts` — the toolkit list and the marquee.
+- `site.ts` — name, email, socials, résumé path, stats.
 
-## 📬 Contact
-- Email: abhinavshukla9490@gmail.com
+No copy is hardcoded in components.
 
----
+## Images
 
-## ⭐️ Show your support
-If you like this project, please star the repo and share it!
+Raw screenshots live in `assets/raw/`, outside `public/`, so Vite never ships
+them. `npm run images` re-encodes them to AVIF + WebP + JPEG at 640px and
+1280px in `public/images/`, and `ProjectImage` picks the best format per
+browser. The current set went from 4159 KB to 146 KB.
+
+Commit `public/images/` — CI runs `npm run build`, not `npm run images`.
+
+## Brand assets
+
+`node scripts/generate-brand.mjs` regenerates `og-image.png`, `favicon.svg`
+and `apple-touch-icon.png` from the palette in that script.
+
+## Theme
+
+One source of truth: a `data-theme` attribute on `<html>`. Set before first
+paint by an inline script in `index.html` (no flash), then owned by
+`useTheme`. Preference persists to `localStorage`; without a stored choice it
+follows `prefers-color-scheme`.
+
+## Deploy
+
+Push to `master`. GitHub Actions runs `npm install && npm run build` and
+deploys `dist/` to Firebase Hosting.
