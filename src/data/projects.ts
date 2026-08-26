@@ -68,7 +68,7 @@ export const projects: readonly Project[] = [
       { label: 'Sync', value: 'WebSockets, no refresh' },
     ],
     stack: ['React', 'Socket.IO', 'Node.js', 'MongoDB', 'Cloudflare Pages'],
-    image: null,
+    image: '/images/synsia',
     imageAlt: 'Synsia — real-time collaborative markdown notepad',
     liveUrl: 'https://synsia.pages.dev/',
     repos: [
@@ -95,7 +95,7 @@ export const projects: readonly Project[] = [
       { label: 'Responsive', value: 'Verified 360px → desktop' },
     ],
     stack: ['Next.js', 'React', 'Supabase'],
-    image: null,
+    image: '/images/aureon',
     imageAlt: 'Aureon — video streaming platform interface',
     liveUrl: 'https://aureon.abhinavshukla.me/',
     repos: [{ label: 'Source', href: 'https://github.com/abhinavshukla19/Aureon-frontend' }],

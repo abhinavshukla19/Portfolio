@@ -118,16 +118,19 @@ function ProjectRow({ project, position, open, onToggle }: ProjectRowProps) {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="grid gap-8 pb-12 md:grid-cols-[1.1fr_1fr] md:gap-14 md:pb-16">
+            {/* minmax(0,…) rather than a bare fr: an fr track's automatic minimum
+                is min-content, which for a 1280px screenshot is 1280px — that
+                blows the track, the grid and the whole page out sideways. */}
+            <div className="grid gap-8 pb-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-14 md:pb-16">
               <div
-                className="relative order-2 overflow-hidden rounded-lg md:order-1"
+                className="relative order-2 min-w-0 self-start overflow-hidden rounded-lg md:order-1"
                 style={{ backgroundColor: 'var(--bg-elevated)', border: '1px solid var(--rule)' }}
               >
                 {project.image ? (
                   <ProjectImage
                     base={project.image}
                     alt={project.imageAlt}
-                    className="h-full w-full object-cover"
+                    className="block h-auto w-full"
                   />
                 ) : (
                   <div
@@ -146,7 +149,7 @@ function ProjectRow({ project, position, open, onToggle }: ProjectRowProps) {
                 )}
               </div>
 
-              <div className="order-1 flex flex-col gap-7 md:order-2 md:pt-2">
+              <div className="order-1 flex min-w-0 flex-col gap-7 md:order-2 md:pt-2">
                 <p className="max-w-prose leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
                   {project.summary}
                 </p>
