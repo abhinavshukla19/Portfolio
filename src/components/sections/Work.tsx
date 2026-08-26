@@ -226,6 +226,18 @@ function ProjectRow({ project, position, open, onToggle }: ProjectRowProps) {
                     </p>
                   ) : null}
                 </div>
+
+                {project.demo ? (
+                  <p
+                    className="font-mono text-[11px] leading-relaxed"
+                    style={{ color: 'var(--fg-faint)' }}
+                  >
+                    <span className="tracking-[0.16em] uppercase">Demo login</span>{' '}
+                    <span style={{ color: 'var(--fg)' }}>{project.demo.email}</span>
+                    {' · '}
+                    <span style={{ color: 'var(--fg)' }}>{project.demo.password}</span>
+                  </p>
+                ) : null}
               </div>
             </div>
           </motion.div>

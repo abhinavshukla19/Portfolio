@@ -20,6 +20,8 @@ export type Project = {
   repos: readonly { label: string; href: string }[]
   /** Set when the live link lands on a sign-in wall, so the card can say so. */
   liveNote?: string
+  /** Throwaway account shown on the card so a visitor can get past that wall. */
+  demo?: { email: string; password: string }
   accent: string
 }
 
@@ -42,7 +44,7 @@ export const projects: readonly Project[] = [
       { label: 'Also ships as', value: 'Installable PWA + Android build' },
     ],
     stack: ['React', 'TypeScript', 'WebAssembly', 'pdf-lib', 'pdf.js', 'Canvas', 'Tailwind', 'Capacitor'],
-    image: null,
+    image: '/images/folio',
     imageAlt: 'Folio — browser-based PDF and document toolkit',
     liveUrl: 'https://folio.abhinavshukla.me/',
     repos: [{ label: 'Source', href: 'https://github.com/abhinavshukla19/folio' }],
@@ -122,7 +124,7 @@ export const projects: readonly Project[] = [
     imageAlt: 'VineVista storefront',
     liveUrl: 'https://vinevista.fourrnexus.com/signin',
     repos: [{ label: 'Source', href: 'https://github.com/abhinavshukla19/vinevista' }],
-    liveNote: 'Sign-in required',
+    demo: { email: 'demo@gmail.com', password: 'Demo@123' },
     accent: '#7B3F5E',
   },
 ]
