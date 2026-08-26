@@ -161,6 +161,21 @@ function ProjectRow({ project, position, open, onToggle }: ProjectRowProps) {
                   <p className="max-w-prose leading-relaxed">{project.hardPart}</p>
                 </div>
 
+                <dl className="font-mono text-[11px]">
+                  {project.facts.map((fact) => (
+                    <div
+                      key={fact.label}
+                      className="flex justify-between gap-6 border-t py-2"
+                      style={{ borderColor: 'var(--rule)' }}
+                    >
+                      <dt className="tracking-[0.14em] uppercase" style={{ color: 'var(--fg-faint)' }}>
+                        {fact.label}
+                      </dt>
+                      <dd className="text-right">{fact.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+
                 <ul className="flex flex-wrap gap-2">
                   {project.stack.map((tech) => (
                     <li
@@ -189,17 +204,26 @@ function ProjectRow({ project, position, open, onToggle }: ProjectRowProps) {
                       />
                     </a>
                   ) : null}
-                  {project.repoUrl ? (
+                  {project.repos.map((repo) => (
                     <a
-                      href={project.repoUrl}
+                      key={repo.href}
+                      href={repo.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors hover:border-[var(--fg)]"
                       style={{ borderColor: 'var(--rule)' }}
                     >
                       <Github size={14} />
-                      Source
+                      {repo.label}
                     </a>
+                  ))}
+                  {project.liveNote ? (
+                    <p
+                      className="self-center font-mono text-[10px] tracking-[0.16em] uppercase"
+                      style={{ color: 'var(--fg-faint)' }}
+                    >
+                      {project.liveNote}
+                    </p>
                   ) : null}
                 </div>
               </div>

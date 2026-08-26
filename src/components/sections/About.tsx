@@ -25,8 +25,8 @@ export function About() {
               >
                 <p>
                   The bug that only appears after a refresh. The shadow falling across a scanned
-                  page. The cart that quietly empties when you sign in. Those are the problems worth
-                  sitting with — they are where the actual engineering hides.
+                  page. The six-digit code that has to land before anyone gets in. Those are the
+                  problems worth sitting with — they are where the actual engineering hides.
                 </p>
                 <p>
                   I&apos;m a third-year Computer Science student at D. Y. Patil International
