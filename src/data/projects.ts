@@ -71,7 +71,7 @@ export const projects: readonly Project[] = [
     stack: ['React', 'TypeScript', 'Cloudflare Workers', 'Durable Objects', 'WebSockets'],
     image: '/images/synsia',
     imageAlt: 'Synsia — real-time collaborative markdown notepad',
-    liveUrl: 'https://synsia.pages.dev/',
+    liveUrl: 'https://synsia.abhinavshukla.me/',
     repos: [
       { label: 'Client', href: 'https://github.com/abhinavshukla19/synsia_frontend' },
       { label: 'Server', href: 'https://github.com/abhinavshukla19/synsia_backend' },
