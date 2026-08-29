@@ -58,16 +58,17 @@ export const projects: readonly Project[] = [
     year: '2025',
     pitch: 'Open a link and write. So can everyone else.',
     summary:
-      'A live collaborative notepad — no account, no setup. Opening the site mints a document URL; anyone with that link joins and edits the same buffer, with everyone currently present listed in the sidebar under a randomly assigned name. Markdown, with an edit/preview toggle, a live word and character count, autosave, and a one-click Markdown export.',
+      'A live collaborative notepad — no account, no setup, no server. Opening the site mints a document URL; anyone with that link joins and edits the same buffer, with everyone currently present listed in the sidebar under a randomly assigned name. Markdown, with an edit/preview toggle, a live word and character count, autosave, and a one-click Markdown export.',
     hardPart:
-      'A bug that erased a user’s work the moment they refreshed. Fixing it meant persisting documents to MongoDB instead of holding them in socket memory — which in turn forced a hosting change, moving the backend onto a Google Cloud VM so there was something long-lived for the sockets to talk to.',
+      'First a bug that erased a user’s work the moment they refreshed, fixed by persisting documents instead of holding them in socket memory. Then the bigger problem: that fix needed a long-lived server, and the VM running it was costing money to sit idle. So the room moved into a Cloudflare Durable Object — one instance per document, owning the sockets, the presence list and the text itself. WebSocket hibernation lets it sleep while connections stay open, so an idle document costs nothing, and MongoDB and the whole server went away with it.',
     facts: [
       { label: 'Sign-up required', value: 'None — the URL is the document' },
       { label: 'Presence', value: 'Live list of who else is in the doc' },
       { label: 'Format', value: 'Markdown, with live preview and .md export' },
-      { label: 'Sync', value: 'WebSockets, no refresh' },
+      { label: 'Backend', value: 'One Durable Object per document' },
+      { label: 'Servers to run', value: 'Zero' },
     ],
-    stack: ['React', 'Socket.IO', 'Node.js', 'MongoDB', 'Cloudflare Pages'],
+    stack: ['React', 'TypeScript', 'Cloudflare Workers', 'Durable Objects', 'WebSockets'],
     image: '/images/synsia',
     imageAlt: 'Synsia — real-time collaborative markdown notepad',
     liveUrl: 'https://synsia.pages.dev/',
