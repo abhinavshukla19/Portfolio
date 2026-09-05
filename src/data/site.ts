@@ -16,8 +16,8 @@ export const site = {
     { label: 'GitHub', handle: 'abhinavshukla19', href: 'https://github.com/abhinavshukla19' },
     {
       label: 'LinkedIn',
-      handle: 'abhinavshukla4798',
-      href: 'https://www.linkedin.com/in/abhinavshukla4798',
+      handle: 'abhinavshukla19',
+      href: 'https://www.linkedin.com/in/abhinavshukla19',
     },
     { label: 'Email', handle: 'contact@abhinavshukla.me', href: 'mailto:contact@abhinavshukla.me' },
   ],
